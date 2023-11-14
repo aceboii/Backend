@@ -2,6 +2,7 @@ require("dotenv").config();
 const app = require("./app");
 const connectDatabase = require("./db/Database");
 const cloudinary = require("cloudinary");
+const socket = require('./socket');
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -25,6 +26,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
+
+socket(app);
 
 // create server
 const server = app.listen(process.env.PORT, () => {
